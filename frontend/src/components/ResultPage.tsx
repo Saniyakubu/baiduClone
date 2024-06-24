@@ -12,7 +12,6 @@ const ResultPage = () => {
     isLoading,
   } = useContextStoreProvider();
   const [isReadmore, setIsReadmore] = useState(false);
-  console.log(searchReslt);
 
   const getData = async () => {
     if (!searchVal) {
