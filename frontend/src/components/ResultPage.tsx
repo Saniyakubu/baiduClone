@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContextStoreProvider } from "../context/store";
 import axios from "axios";
+import { OrganicResult, otherSearches, related } from "../lib/types";
 
 const ResultPage = () => {
   const {
@@ -12,18 +13,25 @@ const ResultPage = () => {
     isLoading,
   } = useContextStoreProvider();
   const [isReadmore, setIsReadmore] = useState(false);
-  console.log(searchReslt);
 
   const getData = async () => {
+    if (!searchVal) {
+      return;
+    }
     setisloading(true);
-    const res = await axios.post("https://baiduclone.onrender.com/search", {
-      searchVal,
-    });
+    try {
+      const res = await axios.post("https://baiduclone.onrender.com/search", {
+        searchVal,
+      });
 
-    const data = await res?.data;
-    setSearchReslt(data);
+      const data = await res?.data;
 
-    setisloading(false);
+      setSearchReslt(data);
+
+      setisloading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -69,7 +77,9 @@ const ResultPage = () => {
             </div>
           ) : (
             <div>
-              <p>{searchReslt?.answer_box[0]?.snippet.substring(0, 200)}....</p>
+              <p>
+                {searchReslt?.answer_box[0]?.snippet?.substring(0, 200)}....
+              </p>
               <p
                 onClick={() => setIsReadmore(!isReadmore)}
                 className="cursor-pointer font-bold text-center mt-10"
@@ -83,7 +93,7 @@ const ResultPage = () => {
 
       <div className="flex mt-20 w-full flex-col lg:flex-row justify-between">
         <article className="flex mt-10 gap-10 flex-col w-[100%] lg:w-[60%] mb-10 pb-5">
-          {searchReslt?.organic_results?.map((rslt: any) => {
+          {searchReslt?.organic_results?.map((rslt: OrganicResult) => {
             return (
               <div>
                 <a
@@ -104,7 +114,7 @@ const ResultPage = () => {
           {searchReslt?.related_searches && searchReslt?.related_searches && (
             <div className="mt-10 flex flex-col gap-3">
               <h1 className=" text-2xl font-bold">Related Search</h1>
-              {searchReslt?.related_searches?.map((results: any) => {
+              {searchReslt?.related_searches?.map((results: related) => {
                 return (
                   <ul>
                     <li className=" underline text-blue-400">
@@ -121,17 +131,19 @@ const ResultPage = () => {
             searchReslt?.people_also_search_for && (
               <div className="mt-10 flex flex-col gap-3">
                 <h1 className=" text-2xl font-bold">People also search for</h1>
-                {searchReslt?.people_also_search_for?.map((results: any) => {
-                  return (
-                    <ul>
-                      <li className=" underline text-blue-400">
-                        <a target="_blank" href={results?.link}>
-                          {results?.text}
-                        </a>
-                      </li>
-                    </ul>
-                  );
-                })}
+                {searchReslt?.people_also_search_for?.map(
+                  (results: otherSearches) => {
+                    return (
+                      <ul>
+                        <li className=" underline text-blue-400">
+                          <a target="_blank" href={results?.link}>
+                            {results?.text}
+                          </a>
+                        </li>
+                      </ul>
+                    );
+                  }
+                )}
               </div>
             )}
         </div>

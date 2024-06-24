@@ -12,18 +12,25 @@ const FrontPage = () => {
     setisloading,
   } = useContextStoreProvider();
   const navigate = useNavigate();
-  console.log("searchReslt: ", searchReslt);
-  const getData = async () => {
-    setisloading(true);
-    const res = await axios.post("https://baiduclone.onrender.com/search", {
-      searchVal,
-    });
 
-    const data = await res?.data;
-    setSearchReslt(data);
-    setisloading(false);
-    if (searchReslt) {
-      navigate("/results");
+  const getData = async () => {
+    if (!searchVal) {
+      return;
+    }
+    setisloading(true);
+    try {
+      const res = await axios.post("https://baiduclone.onrender.com/search", {
+        searchVal,
+      });
+
+      const data = await res?.data;
+      setSearchReslt(data);
+      setisloading(false);
+      if (searchReslt) {
+        navigate("/results");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
