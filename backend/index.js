@@ -9,7 +9,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 app.use(
   cors({
-    origin: ["http://localhost:5173/", "http://localhost:5173"],
+    origin: [
+      "http://localhost:5173/",
+      "http://localhost:5173",
+      "https://baiduclone.onrender.com/",
+      "https://baiduclone.onrender.com",
+    ],
     credentials: true,
   })
 );

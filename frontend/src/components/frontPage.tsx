@@ -15,7 +15,9 @@ const FrontPage = () => {
   console.log("searchReslt: ", searchReslt);
   const getData = async () => {
     setisloading(true);
-    const res = await axios.post("http://localhost:2000/search", { searchVal });
+    const res = await axios.post("https://baiduclone.onrender.com/search", {
+      searchVal,
+    });
 
     const data = await res?.data;
     setSearchReslt(data);
