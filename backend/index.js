@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express, { response } from "express";
 import { getJson } from "serpapi";
+import path from "path";
+
 const app = express();
 
 import cors from "cors";
@@ -12,14 +14,17 @@ app.use(
   })
 );
 app.use(cookieParser());
-
+const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 console.log(process.env.API_KEY);
-
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 const getResponse = async (req, res) => {
   const { searchVal } = req.body;
   try {
@@ -37,7 +42,7 @@ const getResponse = async (req, res) => {
   }
 };
 
-app.post("/", getResponse);
+app.post("/search", getResponse);
 
 app.listen(PORT, () => {
   console.log(`app listening at port $ http://localhost:${PORT}/`);
