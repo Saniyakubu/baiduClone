@@ -56,7 +56,7 @@ const ResultPage = () => {
       {searchReslt?.answer_box && searchReslt?.answer_box[0] && (
         <article className="mt-10 lg:w-[60%] bg-slate-300 text-black shadow-md rounded-md p-5">
           <h1 className=" text-2xl font-bold mb-5 hover:underline">
-            <a href={searchReslt?.answer_box[0]?.link}>
+            <a target="_blank" href={searchReslt?.answer_box[0]?.link}>
               {searchReslt?.answer_box[0]?.title}
             </a>
           </h1>
