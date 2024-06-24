@@ -14,6 +14,7 @@ app.use(
       "http://localhost:5173",
       "https://baiduclone.onrender.com/",
       "https://baiduclone.onrender.com",
+      "https://baiduclone.onrender.com/results",
     ],
     credentials: true,
   })
