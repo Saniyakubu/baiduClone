@@ -26,6 +26,7 @@ const FrontPage = () => {
       const data = await res?.data;
       setSearchReslt(data);
       setisloading(false);
+      setSearchVal("");
       if (searchReslt) {
         navigate("/results");
       }

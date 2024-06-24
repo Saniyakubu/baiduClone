@@ -19,14 +19,19 @@ const ResultPage = () => {
       return;
     }
     setisloading(true);
-    const res = await axios.post("https://baiduclone.onrender.com/search", {
-      searchVal,
-    });
+    try {
+      const res = await axios.post("https://baiduclone.onrender.com/search", {
+        searchVal,
+      });
 
-    const data = await res?.data;
-    setSearchReslt(data);
+      const data = await res?.data;
+      setSearchReslt(data);
 
-    setisloading(false);
+      setisloading(false);
+      setSearchVal("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
