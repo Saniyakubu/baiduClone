@@ -6,7 +6,7 @@ import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { FiSearch } from "react-icons/fi";
 import ThemeToggleIcon from "../themeToggleIcon";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 const ResultPage = () => {
   const {
     setSearchReslt,
@@ -17,7 +17,7 @@ const ResultPage = () => {
     isLoading,
   } = useContextStoreProvider();
   // const [isReadmore, setIsReadmore] = useState(false);
-  const navigate = useNavigate();
+
   const getData = async () => {
     if (!searchVal) {
       return;
@@ -41,8 +41,6 @@ const ResultPage = () => {
   if (!searchReslt?.organic_results) {
     return <Navigate to="/" />;
   }
-
-  console.log(!!searchReslt?.organic_results[0]?.title);
 
   return (
     <section className="w-[100%] h-[100%] px-2 md:px-5 md:w-[100%] mx-auto">
