@@ -5,6 +5,8 @@ import { FaShare } from "react-icons/fa";
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { FiSearch } from "react-icons/fi";
+import ThemeToggleIcon from "../themeToggleIcon";
+import { Navigate, useNavigate } from "react-router-dom";
 const ResultPage = () => {
   const {
     setSearchReslt,
@@ -15,7 +17,7 @@ const ResultPage = () => {
     isLoading,
   } = useContextStoreProvider();
   // const [isReadmore, setIsReadmore] = useState(false);
-
+  const navigate = useNavigate();
   const getData = async () => {
     if (!searchVal) {
       return;
@@ -36,13 +38,19 @@ const ResultPage = () => {
     }
   };
 
+  if (!searchReslt?.organic_results) {
+    return <Navigate to="/" />;
+  }
+
+  console.log(!!searchReslt?.organic_results[0]?.title);
+
   return (
-    <section className="w-[100%] px-2 md:px-5 md:w-[80%] mx-auto ">
-      <div className="flex items-center justify-between mx-auto mt-5">
-        <div className="flex justify-between w-11/12 rounded-lg bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 outline md:w-2/3">
+    <section className="w-[100%] h-[100%] px-2 md:px-5 md:w-[100%] mx-auto">
+      <div className="flex items-center justify-between gap-5 py-5 mx-auto h-28">
+        <div className="flex items-center justify-between w-full md:w-[70%] rounded-lg bg-muted outline">
           <input
             value={searchVal as string}
-            className="w-[95%] md:w-[89%] bg-transparent text-black outline-none rounded-3xl px-2"
+            className="flex-1 p-2 mx-auto text-lg bg-transparent outline-none text-foreground placeholder-foreground"
             placeholder="search..."
             type="text"
             onChange={(e) => setSearchVal(e.target.value)}
@@ -57,23 +65,25 @@ const ResultPage = () => {
             {isLoading && <span className="loading loading-spinner"></span>}
           </p>
         </div>
-        <div className="hidden md:block">
+        <div className="items-center hidden gap-5 md:flex">
           <div className="avatar placeholder">
             <div className="w-10 rounded-full bg-neutral text-neutral-content">
               <span className="text-xl">D</span>
             </div>
           </div>
+          <ThemeToggleIcon />
         </div>
       </div>
-      {searchReslt?.organic_results && (
-        <div className="relative h-56 max-w-xl mt-20">
-          <div className="absolute top-0 z-[-2] h-full w-full bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
-          <p className="flex items-center mx-5 mb-8 text-xl font-bold text-blue-400">
-            <img src={Ai} alt="Ai" className="object-contain w-[40px] " />
-            智能回答
-          </p>
+      {!searchReslt?.organic_results[0]?.title ? (
+        <div className="relative h-56 max-w-xl mb-5 bg-muted">
+          <div className="flex items-center">
+            <img src={Ai} alt="Ai" className="object-contain w-[40px]" />
+            <p className="flex items-center mx-5 mt-5 mb-8 text-xl font-bold dark:text-white">
+              智能回答
+            </p>
+          </div>
           <a
-            className="mx-5 text-xl text-black"
+            className="mx-5 text-xl text-foreground"
             target="_blank"
             href={searchReslt?.organic_results[0]?.link}
           >
@@ -81,7 +91,7 @@ const ResultPage = () => {
               "抱歉，出了有点问题，请稍后重试"}
           </a>
 
-          <p className="w-32 m-5 mx-auto text-center text-white bg-gray-500 rounded-3xl">
+          <p className="w-32 m-5 mx-auto text-center text-white bg-gray-500 cursor-pointer rounded-3xl">
             重新回答
           </p>
 
@@ -95,7 +105,7 @@ const ResultPage = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
 
       {/* {searchReslt?.answer_box && searchReslt?.answer_box[0] && (
         <article className="lg:w-[60%] bg-slate-300 text-black shadow-md rounded-md p-5">
@@ -127,24 +137,24 @@ const ResultPage = () => {
           )}
         </article>
       )} */}
-
       <div className="flex flex-col justify-between w-full lg:flex-row">
         <article className="flex gap-10 flex-col w-[100%] lg:w-[60%] mb-10 pb-5">
-          {searchReslt?.organic_results?.map((rslt: any) => {
-            return (
-              <div>
-                <a
-                  className="mb-10 text-blue-300"
-                  target="_blank"
-                  href={rslt?.link}
-                >
-                  {rslt?.title}
-                </a>
+          {searchReslt &&
+            searchReslt?.organic_results?.map((rslt: any) => {
+              return (
+                <div>
+                  <a
+                    className="mb-10 text-blue-300"
+                    target="_blank"
+                    href={rslt?.link}
+                  >
+                    {rslt?.title}
+                  </a>
 
-                <p className="mt-3 ">{rslt?.snippet}</p>
-              </div>
-            );
-          })}
+                  <p className="mt-3 ">{rslt?.snippet}</p>
+                </div>
+              );
+            })}
         </article>
         <div className="flex flex-col gap-10 ">
           {searchReslt?.related_searches && searchReslt?.related_searches && (
