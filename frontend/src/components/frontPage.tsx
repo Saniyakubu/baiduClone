@@ -50,14 +50,14 @@ const FrontPage = () => {
         </div>
       </div>
 
-      <div className="w-1/2 mx-auto">
+      <div className="w-10/12 mx-auto md:w-1/2">
         <div className="flex flex-col items-center justify-center mb-10">
           <h1 className="text-4xl font-bold text-black">Search Engine</h1>
-          <p className="text-lg ">
+          <p className="text-lg text-center">
             Type anything you want to search for and press Enter.
           </p>
         </div>
-        <div className="flex justify-between rounded-lg bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 outline">
+        <div className="flex justify-between w-full rounded-lg bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 outline">
           <input
             value={searchVal as string}
             onChange={(e) => setSearchVal(e.target.value)}

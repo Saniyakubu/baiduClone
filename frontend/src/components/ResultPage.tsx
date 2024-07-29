@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useContextStoreProvider } from "../context/store";
 import axios from "axios";
 import Ai from "../assets/Ai.png";
-import { AiTwotoneDislike } from "react-icons/ai";
-import { AiTwotoneLike } from "react-icons/ai";
+import { FaShare } from "react-icons/fa";
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
+import { FiSearch } from "react-icons/fi";
 const ResultPage = () => {
   const {
     setSearchReslt,
@@ -36,23 +36,27 @@ const ResultPage = () => {
       console.log(error);
     }
   };
-  console.log(searchReslt?.organic_results[0]?.link);
 
   return (
     <section className="w-[100%] px-2 md:px-5 md:w-[80%] mx-auto ">
       <div className="flex items-center justify-between mx-auto mt-5">
-        <div className="flex w-[98%] justify-between items-center rounded-l-3xl rounded-r-2xl bg-white md:w-[40%]">
+        <div className="flex justify-between w-11/12 rounded-lg bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 outline md:w-2/3">
           <input
             value={searchVal as string}
             className="w-[95%] md:w-[89%] bg-transparent text-black outline-none rounded-3xl px-2"
             placeholder="search..."
             type="text"
             onChange={(e) => setSearchVal(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                getData();
+              }
+            }}
           />
-          <button onClick={getData} className="btn">
-            search
+          <p onClick={getData} className="btn">
+            {!isLoading && <FiSearch className="text-white " />}
             {isLoading && <span className="loading loading-spinner"></span>}
-          </button>
+          </p>
         </div>
         <div className="hidden md:block">
           <div className="avatar placeholder">
@@ -84,12 +88,11 @@ const ResultPage = () => {
 
           <div className="absolute bottom-0 flex items-center justify-between w-full">
             <div className="flex p-2 m-2 bg-gray-600 rounded-3xl gap-x-5">
-              <SlLike className="text-xl text-white " />
-              <SlDislike className="text-xl text-white " />
+              <SlLike className="text-xl text-white cursor-pointer " />
+              <SlDislike className="text-xl text-white cursor-pointer " />
             </div>
             <div className="flex p-2 m-2 bg-gray-600 rounded-3xl gap-x-5">
-              <SlLike className="text-xl text-white " />
-              <SlDislike className="text-xl text-white " />
+              <FaShare className="text-xl text-white " />
             </div>
           </div>
         </div>
