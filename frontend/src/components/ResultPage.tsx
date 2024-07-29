@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useContextStoreProvider } from "../context/store";
 import axios from "axios";
 import Ai from "../assets/Ai.png";
