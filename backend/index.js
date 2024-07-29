@@ -36,7 +36,7 @@ const getResponse = async (req, res) => {
   try {
     const response = await getJson({
       engine: "baidu",
-      api_key: process.env.API_KEY, // Get your API_KEY from https://serpapi.com/manage-api-key
+      api_key: process.env.API_KEY,
       q: searchVal,
       location: "Austin, Texas",
     });
