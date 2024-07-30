@@ -33,7 +33,7 @@ export const useContextStoreProvider = () => {
 const StateProvider = ({ children }: Props) => {
   const [searchVal, setSearchVal] = useState<string>("");
   const [searchReslt, setSearchReslt] = useState<any>({});
-  const [isLoading, setisloading] = useState<boolean>(false);
+  const [isLoading, setisloading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   const states: contextType = {

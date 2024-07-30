@@ -41,9 +41,9 @@ const ResultPage = () => {
     }
   };
 
-  if (!searchReslt?.organic_results) {
-    return <Navigate to="/" />;
-  }
+  // if (!searchReslt?.organic_results) {
+  //   return <Navigate to="/" />;
+  // }
 
   useEffect(() => {
     setSearchVal(searchVal as string);
@@ -80,7 +80,7 @@ const ResultPage = () => {
         </div>
       </div>
       {isLoading && (
-        <div className="flex flex-col h-screen gap-4 px-20 pb-5">
+        <div className="flex flex-col h-screen gap-4 pb-5 lg:px-20">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <Skeleton className="w-6 h-6 rounded-full" />
@@ -89,7 +89,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -100,7 +100,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -111,7 +111,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -122,7 +122,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -133,7 +133,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -144,7 +144,7 @@ const ResultPage = () => {
 
             <div className="space-y-2">
               <Skeleton className="h-6 w-[250px]" />
-              <Skeleton className="h-4 w-[400px]" />
+              <Skeleton className="h-4 w-[300px] lg:w-[400px]" />
             </div>
           </div>
         </div>
