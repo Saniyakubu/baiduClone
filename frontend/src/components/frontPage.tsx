@@ -21,6 +21,7 @@ const FrontPage = () => {
     if (!searchVal) {
       return;
     }
+
     setisloading(true);
     try {
       const res = await axios.post("https://baiduclone.onrender.com/search", {
@@ -28,9 +29,10 @@ const FrontPage = () => {
       });
 
       const data = await res?.data;
+
       setSearchReslt(data);
       setisloading(false);
-      setSearchVal("");
+      setSearchVal(searchVal);
       if (searchReslt) {
         navigate("/results");
       }
