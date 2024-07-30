@@ -31,11 +31,10 @@ const FrontPage = () => {
       const data = await res?.data;
 
       setSearchReslt(data);
-      setisloading(false);
+      // setisloading(false);
       setSearchVal(searchVal);
-      if (searchReslt) {
-        navigate("/results");
-      }
+
+      navigate("/results");
     } catch (error) {
       console.log(error);
     }

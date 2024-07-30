@@ -47,6 +47,7 @@ const ResultPage = () => {
 
   useEffect(() => {
     setSearchVal(searchVal as string);
+    setisloading(false);
   }, [searchReslt]);
 
   return (
@@ -65,8 +66,10 @@ const ResultPage = () => {
               }
             }}
           />
-          <p onClick={getData} className="btn">
-            {!isLoading && <FiSearch className="text-white " />}
+          <p onClick={getData} className="btn bg-muted-foreground">
+            {!isLoading && (
+              <FiSearch className="text-lg font-bold text-white dark:text-black " />
+            )}
             {isLoading && <span className="loading loading-spinner"></span>}
           </p>
         </div>
@@ -153,15 +156,15 @@ const ResultPage = () => {
       {!isLoading && (
         <>
           {!searchReslt?.organic_results[0]?.title ? (
-            <div className="relative h-56 max-w-xl mb-5 lg:ml-20 bg-muted">
+            <div className="relative h-56 max-w-xl mb-5 lg:ml-20 bg-muted-foreground">
               <div className="flex items-center">
                 <img src={Ai} alt="Ai" className="object-contain w-[40px]" />
-                <p className="flex items-center mx-5 mt-5 mb-8 text-xl font-bold dark:text-white">
+                <p className="flex items-center mx-5 mt-5 mb-8 text-xl font-bold text-primary-foreground">
                   智能回答
                 </p>
               </div>
               <a
-                className="mx-5 text-xl text-foreground"
+                className="mx-5 text-xl text-primary-foreground"
                 target="_blank"
                 href={searchReslt?.organic_results[0]?.link}
               >
@@ -169,7 +172,7 @@ const ResultPage = () => {
                   "抱歉，出了有点问题，请稍后重试"}
               </a>
 
-              <p className="w-32 m-5 mx-auto text-center text-white bg-gray-500 cursor-pointer rounded-3xl">
+              <p className="w-32 m-5 mx-auto text-center bg-gray-500 cursor-pointer text-primary-foreground rounded-3xl">
                 重新回答
               </p>
 
@@ -236,7 +239,7 @@ const ResultPage = () => {
                       <p>{rslt?.displayed_link}</p>
                     </div>
                     <a
-                      className="mb-10 text-xl text-blue-300 hover:underline"
+                      className="mb-10 text-xl text-blue-600 hover:underline"
                       target="_blank"
                       href={rslt?.link}
                     >
@@ -301,12 +304,15 @@ const ResultPage = () => {
                 .slice(0, 8)
                 .map((results: any, index: number) => (
                   <ul key={index} className="lg:w-2/4">
-                    <li className="py-5 font-bold text-white rounded-lg bg-muted">
+                    <li
+                      key={index}
+                      className="py-5 font-bold rounded-lg bg-muted-foreground "
+                    >
                       <a
                         target="_blank"
                         href={results?.link}
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between gap-3 px-3"
+                        className="flex items-center justify-between gap-3 px-3 text-primary-foreground"
                       >
                         {results?.text} <FaSearch />
                       </a>
