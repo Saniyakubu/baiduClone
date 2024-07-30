@@ -21,7 +21,7 @@ const Topsearch = () => {
                 key={index}
                 type="single"
                 collapsible
-                className="w-[90%]"
+                className="w-[90%] mx-auto"
               >
                 <AccordionItem value={`item-${index}`}>
                   <AccordionTrigger className="font-bold ">

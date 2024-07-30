@@ -2,6 +2,7 @@ import { FiSearch } from "react-icons/fi";
 import { useContextStoreProvider } from "../context/store";
 import ThemeToggleIcon from "../themeToggleIcon";
 import Ai from "../assets/Ai.png";
+import { Link } from "react-router-dom";
 type searchProps = {
   getData: () => Promise<void>;
 };
@@ -12,7 +13,9 @@ const SearchInput = ({ getData }: searchProps) => {
   return (
     <div className="items-center justify-between w-full px-5 py-3 lg:flex bg-background">
       <div className="flex items-center justify-between w-full mb-5 lg:hidden">
-        <img className="w-10" src={Ai} />
+        <Link to={"/"} className="cursor-pointer ">
+          <img className="w-10" src={Ai} />
+        </Link>
         <div className="flex items-center gap-5">
           <ThemeToggleIcon />
           <div className="avatar placeholder">
@@ -23,7 +26,9 @@ const SearchInput = ({ getData }: searchProps) => {
         </div>
       </div>
       <div className="flex flex-1 gap-3">
-        <img className="hidden w-10 lg:block" src={Ai} />
+        <Link to={"/"} className="cursor-pointer ">
+          <img className="w-10" src={Ai} />
+        </Link>
         <div className="flex items-center justify-between flex-1 w-full max-w-3xl gap-3 rounded-3xl bg-muted outline">
           <input
             value={searchVal as string}
