@@ -9,7 +9,7 @@ import ThemeToggleIcon from "../themeToggleIcon";
 const FrontPage = () => {
   const {
     setSearchReslt,
-    searchReslt,
+
     searchVal,
     setSearchVal,
     isLoading,
