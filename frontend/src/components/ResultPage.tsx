@@ -47,7 +47,9 @@ const ResultPage = () => {
 
   useEffect(() => {
     setSearchVal(searchVal as string);
-    setisloading(false);
+    if (searchReslt) {
+      setisloading(false);
+    }
   }, [searchReslt]);
 
   return (

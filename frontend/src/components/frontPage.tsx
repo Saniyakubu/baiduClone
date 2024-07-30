@@ -33,7 +33,6 @@ const FrontPage = () => {
       setSearchReslt(data);
       // setisloading(false);
       setSearchVal(searchVal);
-
       navigate("/results");
     } catch (error) {
       console.log(error);
