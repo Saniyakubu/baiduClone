@@ -27,7 +27,7 @@ const SearchInput = ({ getData }: searchProps) => {
       </div>
       <div className="flex flex-1 gap-3">
         <Link to={"/"} className="cursor-pointer ">
-          <img className="w-10" src={Ai} />
+          <img className="hidden w-10 lg:block" src={Ai} />
         </Link>
         <div className="flex items-center justify-between flex-1 w-full max-w-3xl gap-3 rounded-3xl bg-muted outline">
           <input
