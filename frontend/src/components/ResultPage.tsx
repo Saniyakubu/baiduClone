@@ -41,9 +41,9 @@ const ResultPage = () => {
     }
   };
 
-  // if (!searchReslt?.organic_results) {
-  //   return <Navigate to="/" />;
-  // }
+  if (!searchReslt?.organic_results) {
+    return <Navigate to="/" />;
+  }
 
   useEffect(() => {
     setSearchVal(searchVal as string);
