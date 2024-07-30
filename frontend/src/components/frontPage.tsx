@@ -1,5 +1,3 @@
-"use client";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContextStoreProvider } from "../context/store";
 import { FiSearch } from "react-icons/fi";
@@ -7,36 +5,17 @@ import { TbMenuOrder } from "react-icons/tb";
 import { FaArrowRightLong } from "react-icons/fa6";
 import ThemeToggleIcon from "../themeToggleIcon";
 const FrontPage = () => {
-  const {
-    setSearchReslt,
-
-    searchVal,
-    setSearchVal,
-    isLoading,
-    setisloading,
-  } = useContextStoreProvider();
+  const { searchVal, setSearchVal, isLoading, setisloading } =
+    useContextStoreProvider();
   const navigate = useNavigate();
 
   const getData = async () => {
     if (!searchVal) {
       return;
     }
-
     setisloading(true);
-    try {
-      const res = await axios.post("https://baiduclone.onrender.com/search", {
-        searchVal,
-      });
-
-      const data = await res?.data;
-
-      setSearchReslt(data);
-      // setisloading(false);
-      setSearchVal(searchVal);
-      navigate("/results");
-    } catch (error) {
-      console.log(error);
-    }
+    setSearchVal(searchVal);
+    navigate("/results");
   };
 
   return (

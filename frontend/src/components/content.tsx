@@ -1,0 +1,118 @@
+import { useContextStoreProvider } from "../context/store";
+
+import { Search } from "lucide-react";
+
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+
+const Content = () => {
+  const { searchReslt } = useContextStoreProvider();
+
+  const vids =
+    searchReslt &&
+    searchReslt?.organic_results?.filter((v: any) => v && v.related_videos);
+  return (
+    <div className="flex flex-col justify-between w-full mt-10 md:px-20 lg:flex-row">
+      <article className="flex gap-10 flex-col w-[100%] lg:w-[60%] mb-10 pb-5">
+        {searchReslt &&
+          searchReslt?.organic_results?.map((rslt: any) => {
+            return (
+              <div className="grid grid-cols-1 gap-5 px-5 py-2">
+                <div className="flex items-center gap-3">
+                  <img
+                    className="object-cover w-8 h-8 rounded-full "
+                    src={
+                      rslt?.thumbnail
+                        ? rslt?.thumbnail
+                        : "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${url}&size=128"
+                    }
+                    alt="image"
+                  />
+                  <div className="flex flex-col flex-wrap justify-center text-wrap">
+                    <p className="break-words ">{rslt?.displayed_link}</p>
+                    {/* <span className="max-w-xs text-sm break-words">
+                      {rslt?.link}
+                    </span> */}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center gap-3">
+                  <a
+                    className="text-xl text-blue-400 hover:underline"
+                    target="_blank"
+                    href={rslt?.link}
+                  >
+                    {rslt?.title}
+                  </a>
+
+                  <p className="">
+                    <span className="text-sm text-gray-500 ">
+                      {rslt?.date}-
+                    </span>{" "}
+                    {rslt?.snippet}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+      </article>
+      <div className="flex flex-col gap-10 ">
+        {searchReslt?.related_searches && searchReslt?.related_searches && (
+          <div className="flex flex-col w-[90%] mx-auto gap-3 mt-10">
+            <h1 className="text-2xl font-bold ">Related Search</h1>
+            {searchReslt?.related_searches?.map((results: any) => {
+              return (
+                <ul>
+                  <li className="flex items-center justify-between p-5 font-bold rounded-lg text-secondary hover:underline bg-secondary-foreground ">
+                    <a target="_blank" href={results?.link}>
+                      {results?.query}
+                    </a>
+                    <Search />
+                  </li>
+                </ul>
+              );
+            })}
+          </div>
+        )}
+        {vids && vids[0]?.related_videos && (
+          <div className="flex flex-col gap-3 my-10">
+            <h1 className="mx-4 text-2xl font-bold">Related Videos</h1>
+            <Carousel
+              opts={{
+                align: "start",
+              }}
+              className="w-full max-w-lg"
+            >
+              <CarouselContent className="">
+                {vids[0]?.related_videos?.map((results: any, index: number) => {
+                  return (
+                    <CarouselItem
+                      key={index}
+                      className="p-0 px-5 basis-1/2 lg:basis-1/2"
+                    >
+                      <div className="p-1">
+                        <div>
+                          <div className="flex items-center justify-center p-6 cursor-pointer aspect-square">
+                            <a target="_blank" href={results?.link}>
+                              <img
+                                className="w-32"
+                                src={results?.image}
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <p>Title: {results?.title}</p>
+                          <p>duration: {results?.duration}</p>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Content;
