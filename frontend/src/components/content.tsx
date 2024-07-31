@@ -11,15 +11,15 @@ const Content = () => {
     searchReslt &&
     searchReslt?.organic_results?.filter((v: any) => v && v.related_videos);
   return (
-    <div className="flex flex-col justify-between w-full mt-10 md:px-20 lg:flex-row">
-      <article className="flex gap-10 flex-col w-[100%] lg:w-[60%] mb-10 pb-5">
+    <div className="grid gap-10 px-16 py-8 border lg:grid-cols-2 place-content-between">
+      <article className="grid gap-5 ">
         {searchReslt &&
-          searchReslt?.organic_results?.map((rslt: any) => {
+          searchReslt?.organic_results?.map((rslt: any, index: number) => {
             return (
-              <div className="grid grid-cols-1 gap-5 px-5 py-2">
+              <div key={index} className="grid gap-2">
                 <div className="flex items-center gap-3">
                   <img
-                    className="object-cover w-8 h-8 rounded-full "
+                    className="object-cover w-10 h-10 rounded-full"
                     src={
                       rslt?.thumbnail
                         ? rslt?.thumbnail
@@ -34,7 +34,7 @@ const Content = () => {
                     </span> */}
                   </div>
                 </div>
-                <div className="flex flex-col justify-center gap-3">
+                <div className="flex flex-col gap-3">
                   <a
                     className="text-xl text-blue-400 hover:underline"
                     target="_blank"
@@ -44,42 +44,41 @@ const Content = () => {
                   </a>
 
                   <p className="">
-                    <span className="text-sm text-gray-500 ">
-                      {rslt?.date}-
-                    </span>{" "}
-                    {rslt?.snippet}
+                    <span className="">{rslt?.date}-</span> {rslt?.snippet}
                   </p>
                 </div>
               </div>
             );
           })}
       </article>
-      <div className="flex flex-col gap-10 ">
+      <div className="">
         {searchReslt?.related_searches && searchReslt?.related_searches && (
-          <div className="flex flex-col w-[90%] mx-auto gap-3 mt-10">
-            <h1 className="text-2xl font-bold ">Related Search</h1>
-            {searchReslt?.related_searches?.map((results: any) => {
-              return (
-                <ul>
-                  <li className="flex items-center justify-between p-5 font-bold rounded-lg text-secondary hover:underline bg-secondary-foreground ">
-                    <a target="_blank" href={results?.link}>
-                      {results?.query}
-                    </a>
-                    <Search />
-                  </li>
-                </ul>
-              );
-            })}
+          <div className="">
+            <h1 className="">Related Search</h1>
+            {searchReslt?.related_searches?.map(
+              (results: any, index: number) => {
+                return (
+                  <ul key={index}>
+                    <li className="">
+                      <a target="_blank" href={results?.link}>
+                        {results?.query}
+                      </a>
+                      <Search />
+                    </li>
+                  </ul>
+                );
+              }
+            )}
           </div>
         )}
         {vids && vids[0]?.related_videos && (
-          <div className="flex flex-col gap-3 my-10">
-            <h1 className="mx-4 text-2xl font-bold">Related Videos</h1>
+          <div className="">
+            <h1 className="text-xl font-bold text-center">Related Videos</h1>
             <Carousel
               opts={{
-                align: "start",
+                align: "end",
               }}
-              className="w-full max-w-lg"
+              className="w-full mx-auto"
             >
               <CarouselContent className="">
                 {vids[0]?.related_videos?.map((results: any, index: number) => {

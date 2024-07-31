@@ -19,7 +19,7 @@ const FrontPage = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full h-screen bg-primary-foreground dark:bg-background">
+    <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-primary-foreground dark:bg-background">
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]" />
       <div className="absolute py-3 top-0 flex justify-between w-[98%] mx-auto ">
         <TbMenuOrder className="p-1 text-3xl text-white rounded-full cursor-pointer bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800" />

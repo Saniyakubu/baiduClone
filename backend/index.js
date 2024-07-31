@@ -35,10 +35,11 @@ const getResponse = async (req, res) => {
   const { searchVal } = req.body;
   try {
     const response = await getJson({
-      engine: "baidu",
+      engine: "google",
       api_key: process.env.API_KEY,
       q: searchVal,
       location: "Austin, Texas",
+      google_domain: "google.com",
     });
     // console.log(response);
     res.json(response);
