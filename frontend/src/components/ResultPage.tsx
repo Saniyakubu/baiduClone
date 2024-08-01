@@ -16,9 +16,9 @@ const ResultPage = () => {
     if (!searchVal) {
       return;
     }
-    setisloading(true);
+    // setisloading(true);
     try {
-      const res = await axios.post("https://baiduclone.onrender.com/search", {
+      const res = await axios.post("http://localhost:2000/search", {
         searchVal,
       });
 
