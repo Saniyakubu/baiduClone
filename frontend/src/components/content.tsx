@@ -29,16 +29,16 @@ const Content = () => {
   // px-5 py-5 lg:px-16 lg:py-5
   console.log(searchReslt);
   return (
-    <div className="grid grid-cols-3 gap-5 border ">
-      <div className="col-span-2 border lg:p-5">
+    <div className="grid p-5 lg:gap-5 lg:p-10 lg:grid-cols-3">
+      <div className="lg:col-span-2 lg:p-5">
         {searchReslt?.top_stories && (
-          <div className="grid w-full grid-cols-2 gap-5">
-            {searchReslt &&
+          <div className="grid w-full gap-5 lg:grid-cols-2">
+            {searchReslt?.top_stories &&
               searchReslt?.top_stories.map((result: any) => {
                 return (
-                  <Card className="flex flex-col justify-between p-4">
+                  <Card className="flex flex-col justify-between p-2 lg:p-4">
                     <div className="flex items-center justify-center gap-3">
-                      <div className="grid gap-2 ">
+                      <div className="grid gap-2">
                         <div className="flex items-center gap-2">
                           <Avatar>
                             <AvatarImage src={result?.source} alt="@shadcn" />
@@ -66,11 +66,14 @@ const Content = () => {
           </div>
         )}
 
-        {searchReslt &&
+        {searchReslt?.organic_results &&
           searchReslt?.organic_results
             .filter((result: any) => result.position < 5)
             .map((filteredResult: any) => (
-              <Card key={filteredResult?.position} className="p-5 border">
+              <Card
+                key={filteredResult?.position}
+                className="py-5 border-none lg:p-5"
+              >
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarImage src={filteredResult?.favicon} alt="@shadcn" />
@@ -120,11 +123,14 @@ const Content = () => {
             </div>
           )}
         </>
-        {searchReslt &&
+        {searchReslt?.organic_results &&
           searchReslt?.organic_results
             .filter((result: any) => result.position > 5)
             .map((filteredResult: any) => (
-              <Card key={filteredResult?.position} className="p-5 border">
+              <Card
+                key={filteredResult?.position}
+                className="py-5 border-none lg:p-5 "
+              >
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarImage src={filteredResult?.favicon} alt="@shadcn" />
@@ -153,13 +159,13 @@ const Content = () => {
               </Card>
             ))}
       </div>
-      <div className="">
+      <div className="w-full">
         <div>
           <h3 className="py-4 text-2xl font-semibold tracking-tight scroll-m-20">
             About
           </h3>
           {searchReslt?.knowledge_graph && (
-            <Card>
+            <Card className="w-full py-4 ">
               <CardContent>
                 {searchReslt?.knowledge_graph?.description}
               </CardContent>
@@ -204,20 +210,24 @@ const Content = () => {
             </Card>
           )}
         </div>
-        <div className="flex items-center justify-center gap-5 p-5">
-          {searchReslt?.knowledge_graph?.people_also_search_for.map(
-            (result: any) => {
-              return (
-                <div className="flex flex-col items-center gap-2">
-                  <img src={result?.image} alt="" />
-                  <h1 className="cursor-pointer hover:underline ">
-                    <a href={result?.link}>{result?.name}</a>
-                  </h1>
-                </div>
-              );
-            }
+        <>
+          {searchReslt?.knowledge_graph?.people_also_search_for && (
+            <div className="flex items-center justify-center gap-5 p-5">
+              {searchReslt?.knowledge_graph?.people_also_search_for.map(
+                (result: any) => {
+                  return (
+                    <div className="flex flex-col items-center gap-2">
+                      <img src={result?.image} alt="" />
+                      <h1 className="cursor-pointer hover:underline ">
+                        <a href={result?.link}>{result?.name}</a>
+                      </h1>
+                    </div>
+                  );
+                }
+              )}
+            </div>
           )}
-        </div>
+        </>
         {searchReslt?.related_searches && (
           <>
             <h3 className="py-5 text-2xl font-semibold tracking-tight scroll-m-20">

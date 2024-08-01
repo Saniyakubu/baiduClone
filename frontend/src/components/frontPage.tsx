@@ -69,7 +69,7 @@ const FrontPage = () => {
             <span className="text-foreground ">
               <FaArrowRightLong />
             </span>
-            怎么学习react
+            Nigeria
           </li>
           <li
             onClick={() => setSearchVal("怎么学习python")}
@@ -78,7 +78,7 @@ const FrontPage = () => {
             <span className="text-foreground ">
               <FaArrowRightLong />
             </span>
-            怎么学习python
+            China
           </li>
           <li
             onClick={() => setSearchVal("咖啡")}
@@ -87,7 +87,7 @@ const FrontPage = () => {
             <span className="text-foreground">
               <FaArrowRightLong />
             </span>
-            咖啡
+            Coffee
           </li>
         </ul>
       </div>
