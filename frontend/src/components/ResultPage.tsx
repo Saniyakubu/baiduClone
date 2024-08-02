@@ -18,7 +18,7 @@ const ResultPage = () => {
     }
     // setisloading(true);
     try {
-      const res = await axios.post("http://localhost:2000/search", {
+      const res = await axios.post("https://baiduclone.onrender.com/search", {
         searchVal,
       });
 
