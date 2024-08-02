@@ -31,6 +31,9 @@ const Content = () => {
   return (
     <div className="grid p-5 lg:gap-5 lg:p-10 lg:grid-cols-3">
       <div className="lg:col-span-2 lg:p-5">
+        <h3 className="pb-1 text-2xl font-semibold tracking-tight scroll-m-20">
+          Top stories
+        </h3>
         {searchReslt?.top_stories && (
           <div className="grid w-full gap-5 lg:grid-cols-2">
             {searchReslt?.top_stories &&
@@ -42,7 +45,7 @@ const Content = () => {
                         <div className="flex items-center gap-2">
                           <Avatar>
                             <AvatarImage src={result?.source} alt="@shadcn" />
-                            <AvatarFallback>CN</AvatarFallback>
+                            <AvatarFallback>{result?.source}</AvatarFallback>
                           </Avatar>
                           <CardHeader className="p-0">
                             {result?.source}
@@ -161,7 +164,7 @@ const Content = () => {
       </div>
       <div className="w-full">
         <div>
-          <h3 className="py-4 text-2xl font-semibold tracking-tight scroll-m-20">
+          <h3 className="py-3 text-2xl font-semibold tracking-tight scroll-m-20">
             About
           </h3>
           {searchReslt?.knowledge_graph && (
@@ -211,6 +214,9 @@ const Content = () => {
           )}
         </div>
         <>
+          <h3 className="py-2 text-2xl font-semibold tracking-tight scroll-m-20">
+            People also search for
+          </h3>
           {searchReslt?.knowledge_graph?.people_also_search_for && (
             <div className="flex items-center justify-center gap-5 p-5">
               {searchReslt?.knowledge_graph?.people_also_search_for.map(

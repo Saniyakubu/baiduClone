@@ -63,7 +63,7 @@ const FrontPage = () => {
         </div>
         <ul className="mt-8 text-foreground">
           <li
-            onClick={() => setSearchVal("怎么学习react")}
+            onClick={() => setSearchVal("Nigeria")}
             className="flex items-center text-xl cursor-pointer gap-x-2 hover:underline"
           >
             <span className="text-foreground ">
@@ -72,7 +72,7 @@ const FrontPage = () => {
             Nigeria
           </li>
           <li
-            onClick={() => setSearchVal("怎么学习python")}
+            onClick={() => setSearchVal("China")}
             className="flex items-center text-xl cursor-pointer gap-x-2 hover:underline"
           >
             <span className="text-foreground ">
@@ -81,7 +81,7 @@ const FrontPage = () => {
             China
           </li>
           <li
-            onClick={() => setSearchVal("咖啡")}
+            onClick={() => setSearchVal("Coffee")}
             className="flex items-center text-xl cursor-pointer gap-x-2 hover:underline"
           >
             <span className="text-foreground">
