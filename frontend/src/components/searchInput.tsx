@@ -8,12 +8,16 @@ type searchProps = {
 };
 
 const SearchInput = ({ getData }: searchProps) => {
-  const { searchVal, setSearchVal, isLoading } = useContextStoreProvider();
-
+  const { searchVal, setSearchVal, isLoading, setisloading } =
+    useContextStoreProvider();
+  const reset = () => {
+    setisloading(false);
+    setSearchVal("");
+  };
   return (
     <div className="items-center justify-between w-full px-5 py-3 lg:py-5 lg:flex bg-background">
       <div className="flex items-center justify-between w-full mb-5 lg:hidden">
-        <Link to={"/"} className="cursor-pointer ">
+        <Link onClick={reset} to={"/"} className="cursor-pointer ">
           <img className="w-10" src={Ai} />
         </Link>
         <div className="flex items-center gap-5">
