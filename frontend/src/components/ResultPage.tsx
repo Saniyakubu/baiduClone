@@ -10,7 +10,7 @@ const ResultPage = () => {
   const { setSearchReslt, searchVal, setSearchVal, setisloading, isLoading } =
     useContextStoreProvider();
   // const [isReadmore, setIsReadmore] = useState(false);
-
+  console.log(isLoading);
   const getData = async () => {
     setisloading(true);
     if (!searchVal) {
@@ -24,10 +24,10 @@ const ResultPage = () => {
 
       const data = await res?.data;
       setSearchReslt(data);
-
-      setSearchVal(searchVal as string);
       setisloading(false);
+      setSearchVal(searchVal as string);
     } catch (error) {
+      setisloading(false);
       console.log(error);
     }
   };

@@ -22,12 +22,9 @@ import { Search } from "lucide-react";
 
 const Content = () => {
   const { searchReslt } = useContextStoreProvider();
-  console.log(
-    "knowledge_graph",
-    searchReslt?.knowledge_graph?.people_also_search_for
-  );
+
   // px-5 py-5 lg:px-16 lg:py-5
-  console.log(searchReslt);
+
   return (
     <div className="grid p-5 lg:gap-5 lg:p-10 lg:grid-cols-3">
       <div className="lg:col-span-2 lg:p-5">
