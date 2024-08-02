@@ -25,8 +25,8 @@ const ResultPage = () => {
       const data = await res?.data;
       setSearchReslt(data);
 
-      setisloading(false);
       setSearchVal(searchVal as string);
+      setisloading(false);
     } catch (error) {
       console.log(error);
     }
